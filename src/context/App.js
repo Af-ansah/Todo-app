@@ -8,22 +8,22 @@ export const AppProvider = ({ children }) => {
   const [todos, setTodos] = useState(dataFromStorage);
 
   const add = (todo) => {
-    setTodos([...todos, todo]);
+    setTodos([...todos, { ...todo, id: todos.length + 1 }]);
     localStorage.setItem("todos", JSON.stringify([...todos, todo]));
   };
 
   const remove = (todo) => {
-    const newTodos = todos.filter((item, i) => todo.id !== i);
+    const newTodos = todos.filter((item) => todo.id !== item.id);
     setTodos(newTodos);
     localStorage.setItem("todos", JSON.stringify(newTodos));
   };
 
   const complete = (todo) => {
-    const newTodos = todos.map((item, i) => {
-      if (todo.id === i) {
+    const newTodos = todos.map((item) => {
+      if (todo.id === item.id) {
         return { isComplete: true, ...item };
       } else {
-        return todo;
+        return { ...item };
       }
     });
     setTodos(newTodos);
