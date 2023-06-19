@@ -4,13 +4,7 @@ const Todo = ({ todo }) => {
   const { remove, complete } = useTodos();
 
   return (
-    <div
-      draggable="true"
-      onDragStart={(event) => handleDragStart(event, index)}
-      onDragOver={(event) => handleDragOver(event, index)}
-      onDragEnd={handleDragEnd}
-      className="bg-white p-3 w-[400px] relative border-b border-neutral-200 flex flex-col items-start my-2"
-    >
+    <div className="bg-white p-3 w-[400px] relative border-b border-neutral-200 flex flex-col items-start my-2">
       <span> {todo.text}</span>
       <div className="text-xs flex gap-1 text-neutral-500 items-center">
         <BiCalendarEvent />
